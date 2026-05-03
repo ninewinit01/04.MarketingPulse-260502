@@ -1,5 +1,7 @@
-# Env
+# Env (절대 commit 금지)
 .env
+.env.prod
+.env.bak.*
 .env.local
 *.env.local
 

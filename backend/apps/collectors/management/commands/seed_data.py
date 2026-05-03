@@ -8,7 +8,7 @@ from __future__ import annotations
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from apps.content.models import Source
+from apps.content.models import CuratedChannel, Source
 from apps.industries.models import Industry, Keyword
 
 INDUSTRIES = [
@@ -73,6 +73,20 @@ SOURCES = [
     {"slug": "newsapi", "name": "일반 뉴스 (RSS/NewsAPI)", "type": Source.Type.NEWS},
 ]
 
+# YouTube 큐레이션 채널 — Admin > YouTube 채널 페이지에서 자유롭게 추가/수정 가능
+CURATED_CHANNELS = [
+    {
+        "handle": "@eo_korea",
+        "name": "EO Korea",
+        "description": "스타트업/비즈니스 인터뷰",
+    },
+    {
+        "handle": "@CH신사임당",
+        "name": "신사임당",
+        "description": "비즈니스/유튜브 운영",
+    },
+]
+
 
 class Command(BaseCommand):
     help = "초기 업종 / 키워드 / 소스 시드 데이터를 생성합니다."
@@ -117,6 +131,18 @@ class Command(BaseCommand):
             )
             label = "생성" if created else "존재"
             self.stdout.write(f"  [{label}] Source: {source.name}")
+
+        for ch_data in CURATED_CHANNELS:
+            ch, created = CuratedChannel.objects.get_or_create(
+                handle=ch_data["handle"],
+                defaults={
+                    "name": ch_data["name"],
+                    "description": ch_data["description"],
+                    "is_active": True,
+                },
+            )
+            label = "생성" if created else "존재"
+            self.stdout.write(f"  [{label}] CuratedChannel: {ch.handle} ({ch.name})")
 
         self.stdout.write(self.style.SUCCESS("\n시드 데이터 준비 완료"))
         self.stdout.write(f"\nADMIN_API_TOKEN = {settings.ADMIN_API_TOKEN}")

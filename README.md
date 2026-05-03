@@ -60,6 +60,8 @@ npm run dev
 - Admin: http://localhost:5173/admin → 좌측 토큰 입력 칸에 `.env`의 `ADMIN_API_TOKEN` 붙여넣기
 - API: http://localhost:8181/api/health/
 
+> **배포 후 첫 운영 셋업 / 데이터 확인 / cron 등록 / 운영 중 데이터 추가** 가이드는 [`POST_DEPLOY.md`](./POST_DEPLOY.md) 참고.
+
 ---
 
 ## 환경변수 가이드

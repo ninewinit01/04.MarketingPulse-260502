@@ -1,18 +1,7 @@
-# Production Caddy 설정
-#
-# ⚠️  사용 전 아래 도메인을 본인 도메인으로 변경하세요:
-#       api.your-domain.com  →  실제 운영 도메인
-#
-# Caddy가 자동으로 Let's Encrypt 인증서 발급/갱신.
-# 사전 조건:
-#   1. 본인 도메인의 DNS A 레코드가 이 서버 공인 IP를 가리킴
-#   2. 라우터 포트포워딩 80, 443 → 이 서버
-#   3. 80, 443 외부에서 접근 가능
-
 api.your-domain.com {
 	encode gzip
 
-	# Django backend 로 프록시
+	# Django Admin / API
 	reverse_proxy backend:8000 {
 		header_up X-Forwarded-Proto https
 		header_up X-Forwarded-Host {host}
@@ -20,7 +9,7 @@ api.your-domain.com {
 		header_up X-Real-IP {remote_host}
 	}
 
-	# 액세스 로그 (콘솔 출력 → docker logs caddy)
+	# 로그
 	log {
 		output stdout
 		format console
