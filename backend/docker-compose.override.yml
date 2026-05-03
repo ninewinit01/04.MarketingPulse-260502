@@ -1,0 +1,6 @@
+services:
+  backend:
+    volumes:
+      - .:/app
+    environment:
+      DJANGO_DEBUG: "True"

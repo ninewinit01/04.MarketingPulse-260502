@@ -1,0 +1,54 @@
+# ───── Env (절대 commit 금지) ─────
+.env
+**/.env
+.env.local
+**/.env.local
+**/.env.bak.*
+**/.env.prod
+*.env.local
+
+# ───── Python ─────
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ───── Django ─────
+db.sqlite3
+db.sqlite3-journal
+**/staticfiles/
+**/media/
+*.log
+backend/logs/
+
+# ───── Node / Vite ─────
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+build/
+**/build/
+.vite/
+**/.vite/
+.cache/
+*.tsbuildinfo
+
+# ───── OS / IDE ─────
+.DS_Store
+**/.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ───── Docker ─────
+docker-compose.local.yml

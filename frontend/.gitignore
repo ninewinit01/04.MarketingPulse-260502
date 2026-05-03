@@ -1,0 +1,22 @@
+# Env
+.env
+.env.local
+*.env.local
+
+# Node
+node_modules/
+dist/
+build/
+.vite/
+.cache/
+*.tsbuildinfo
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# pnpm/yarn (npm 사용 중이라도 혹시)
+.pnp.*
